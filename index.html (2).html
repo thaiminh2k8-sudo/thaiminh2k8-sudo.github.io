@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA IELTS — Personal Learning Hub by Đinh Minh</title>
+    <meta name="description" content="Thư viện tài liệu học tiếng Anh và ôn luyện IELTS cá nhân được thiết kế bởi Đinh Minh.">
+    <meta name="author" content="Đinh Minh">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* ==========================================================================
+           DESIGN SYSTEM & VARIABLES
+           ========================================================================== */
+        :root {
+            --primary: #1E3A8A;
+            --primary-light: #3B82F6;
+            --secondary: #0D9488;
+            --amber: #D97706;
+            --bg-main: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
+            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.05);
+            --shadow-lg: 0 20px 30px -10px rgba(0,0,0,0.08);
+            --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ==========================================================================
+           HEADER & NAVIGATION
+           ========================================================================== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        .brand-author {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(30, 58, 138, 0.08);
+            color: var(--primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            margin-left: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-btn {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: var(--primary);
+            background-color: rgba(59, 130, 246, 0.08);
+        }
+
+        .search-trigger {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--bg-main);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            width: 220px;
+            cursor: pointer;
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .hero {
+            padding: 4rem 0 2.5rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 1.25rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.85rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 14px rgba(30, 58, 138, 0.3);
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background-color: #1a3278;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 0.85rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-main);
+        }
+
+        .daily-card {
+            background: linear-gradient(135deg, #1E3A8A 0%, #0F172A 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .daily-tag {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.35rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .daily-refresh-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+
+        .daily-refresh-btn:hover {
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        /* ==========================================================================
+           QUICK ACCESS CARDS
+           ========================================================================== */
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .quick-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            cursor: pointer;
+        }
+
+        .quick-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .quick-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ==========================================================================
+           RESOURCE LIBRARY & CARDS
+           ========================================================================== */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+
+        .select-filter {
+            padding: 0.6rem 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background-color: var(--bg-main);
+            font-family: inherit;
+            font-size: 0.875rem;
+            outline: none;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-pills {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .badge-pill {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            background-color: var(--bg-main);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+
+        .badge-skill {
+            background-color: rgba(30, 58, 138, 0.08);
+            color: var(--primary);
+            border-color: transparent;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .card-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .btn-open {
+            color: var(--primary-light);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: var(--transition);
+        }
+
+        .btn-open:hover {
+            gap: 0.6rem;
+        }
+
+        .fav-star {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            color: var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .fav-star.active {
+            color: var(--amber);
+            fill: var(--amber);
+        }
+
+        /* ==========================================================================
+           ROADMAP / STUDY PLAN
+           ========================================================================== */
+        .roadmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .roadmap-step {
+            background: white;
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        .footer {
+            margin-top: 5rem;
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-author {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.25rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="#" class="brand-logo" onclick="switchPage('home')">
+                <i data-lucide="graduation-cap"></i> AURA IELTS
+                <span class="brand-author">by Đinh Minh</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><button class="nav-btn active" id="nav-home" onclick="switchPage('home')">Trang Chủ</button></li>
+                <li><button class="nav-btn" id="nav-resources" onclick="switchPage('resources')">Thư Viện Tài Liệu</button></li>
+                <li><button class="nav-btn" id="nav-dashboard" onclick="switchPage('dashboard')">Dashboard</button></li>
+                <li><button class="nav-btn" id="nav-plan" onclick="switchPage('plan')">Study Plan</button></li>
+                <li><button class="nav-btn" id="nav-favorites" onclick="switchPage('favorites')">Đã Lưu</button></li>
+            </ul>
+
+            <div class="search-trigger" onclick="switchPage('resources')">
+                <i data-lucide="search" size="16"></i>
+                <span>Tìm kiếm tài liệu...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="container" id="mainContent">
+        <!-- Dynamic content via JS -->
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 <strong>AURA IELTS</strong> — Personal English Learning Hub.</p>
+            <p>Designed & Developed with precision by <span class="footer-author">Đinh Minh</span>.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT SYSTEM -->
+    <script>
+        /* ==========================================================================
+           DAILY KNOWLEDGE BASE (Danh sách Từ vựng & Collocations hàng ngày)
+           ========================================================================== */
+        const DAILY_KNOWLEDGE_BASE = [
+            // --- 10 TỪ VỰNG MỚI (WORDS OF THE DAY) ---
+            {
+                tag: "Word of the Day",
+                title: "Pivotal (adj)",
+                meaning: "Gốc rễ, giữ vai trò then chốt hoặc quyết định.",
+                example: "\"Re-evaluating exam strategies plays a pivotal role in boosting scores.\"",
+                extra: "💡 Đồng nghĩa: Crucial, Essential, Vital"
+            },
+            {
+                tag: "Word of the Day",
+                title: "Exemplary (adj)",
+                meaning: "Gương mẫu, xuất sắc đáng làm mẫu.",
+                example: "\"The student provided an exemplary essay with flawless cohesion.\"",
+                extra: "💡 Thích hợp dùng trong Writing Task 2 & Speaking Part 3"
+            },
+            {
+                tag: "Word of the Day",
+                title: "Elucidate (v)",
+                meaning: "Giải thích rõ ràng, làm sáng tỏ một vấn đề phức tạp.",
+                example: "\"The teacher used graphs to elucidate the difficult concept.\"",
+                extra: "💡 Từ trang trọng thay cho 'explain'"
+            },
+            {
+                tag: "Word of the Day",
+                title: "Perseverance (n)",
+                meaning: "Sự kiên trì, bền bỉ vượt qua khó khăn.",
+                example: "\"Hard work and perseverance always pay off in the long run.\"",
+                extra: "💡 Động từ: Persevere | Đồng nghĩa: Persistence"
+            },
+            {
+                tag: "Word of the Day",
+                title: "Ubiquitous (adj)",
+                meaning: "Phổ biến, xuất hiện ở khắp mọi nơi.",
+                example: "\"Smartphones have become ubiquitous in modern society.\"",
+                extra: "💡 Rất hay dùng cho chủ đề Technology trong IELTS"
+            },
+            {
+                tag: "Word of the Day",
+                title: "Detrimental (adj)",
+                meaning: "Có hại, gây tổn hại.",
+                example: "\"Excessive social media use can have a detrimental effect on mental health.\"",
+                extra: "💡 Thay thế nâng cao cho 'harmful' hoặc 'bad'"
+            },
+            {
+                tag: "Word of the Day",
+                title: "Lucrative (adj)",
+                meaning: "Sinh lời, tạo ra lợi nhuận cao.",
+                example: "\"Tech industries offer many lucrative career paths for graduates.\"",
+                extra: "💡 Thay thế nâng cao cho 'profitable'"
+            },
+            {
+                tag: "Word of the Day",
+                title: "Comprehensive (adj)",
+                meaning: "Toàn diện, bao quát mọi khía cạnh.",
+                example: "\"This guide offers a comprehensive overview of IELTS Speaking.\"",
+                extra: "💡 Đồng nghĩa: All-inclusive, Thorough"
+            },
+            {
+                tag: "Word of the Day",
+                title: "Mitigate (v)",
+                meaning: "Giảm nhẹ, làm bớt mức độ nghiêm trọng.",
+                example: "\"Governments must take action to mitigate the impacts of climate change.\"",
+                extra: "💡 Từ ăn điểm cực cao cho Writing Task 2 chủ đề Environment/Society"
+            },
+            {
+                tag: "Word of the Day",
+                title: "Pragmatic (adj)",
+                meaning: "Thực tế, thực dụng (giải quyết theo cách thực tiễn).",
+                example: "\"We need a pragmatic approach to solve traffic congestion.\"",
+                extra: "💡 Trái nghĩa: Idealistic, Unrealistic"
+            },
+
+            // --- 10 COLLOCATIONS MỚI (COLLOCATIONS OF THE DAY) ---
+            {
+                tag: "Collocation of the Day",
+                title: "Exert a profound influence on",
+                meaning: "Gây ra ảnh hưởng sâu sắc lên ai/cái gì.",
+                example: "\"Parents exert a profound influence on their children's character development.\"",
+                extra: "💡 Dùng cực tốt trong Writing Task 2 thay cho 'have a big impact on'"
+            },
+            {
+                tag: "Collocation of the Day",
+                title: "Bridge the gap between",
+                meaning: "Rút ngắn khoảng cách giữa hai bên/hai khía cạnh.",
+                example: "\"Education is the most effective tool to bridge the gap between rich and poor.\"",
+                extra: "💡 Hay dùng cho các chủ đề Education, Society, Technology"
+            },
+            {
+                tag: "Collocation of the Day",
+                title: "Pose a threat to",
+                meaning: "Đe dọa / Đặt ra hiểm họa đối với...",
+                example: "\"Plastic pollution poses a serious threat to marine life.\"",
+                extra: "💡 Cụm cố định ăn điểm bài luận Environment"
+            },
+            {
+                tag: "Collocation of the Day",
+                title: "Adhere to strict regulations",
+                meaning: "Tuân thủ nghiêm ngặt các quy định.",
+                example: "\"Factories must adhere to strict environmental regulations.\"",
+                extra: "💡 Cụm C1/C2 dùng cho chủ đề Crime, Law, Environment"
+            },
+            {
+                tag: "Collocation of the Day",
+                title: "Reap the benefits of",
+                meaning: "Gặt hái những lợi ích từ cái gì.",
+                example: "\"Students who practice daily will reap the benefits of high IELTS scores.\"",
+                extra: "💡 Cụm tự nhiên thay cho 'get good results'"
+            },
+            {
+                tag: "Collocation of the Day",
+                title: "Spur economic growth",
+                meaning: "Thúc đẩy sự phát triển kinh tế.",
+                example: "\"Investing in infrastructure will help spur economic growth.\"",
+                extra: "💡 Dùng cho các bài luận thuộc chủ đề Economy, Development"
+            },
+            {
+                tag: "Collocation of the Day",
+                title: "Cater to the needs of",
+                meaning: "Phục vụ / Đáp ứng nhu cầu của ai.",
+                example: "\"Online courses cater to the needs of busy working professionals.\"",
+                extra: "💡 Hay dùng trong chủ đề Technology, Education"
+            },
+            {
+                tag: "Collocation of the Day",
+                title: "Raise public awareness about",
+                meaning: "Nâng cao nhận thức cộng đồng về...",
+                example: "\"Campaigns are needed to raise public awareness about healthy eating.\"",
+                extra: "💡 Mẹo làm phần Solution trong Writing Task 2"
+            },
+            {
+                tag: "Collocation of the Day",
+                title: "Striking a balance between",
+                meaning: "Cân bằng giữa hai yếu tố (thường là công việc và cuộc sống).",
+                example: "\"Striking a healthy balance between work and life is essential for mental health.\"",
+                extra: "💡 Cụm tự nhiên cho chủ đề Lifestyle, Work"
+            },
+            {
+                tag: "Collocation of the Day",
+                title: "Have an appetite for learning",
+                meaning: "Ham học hỏi, khao khát tiếp thu kiến thức.",
+                example: "\"Young students generally have a strong appetite for learning new skills.\"",
+                extra: "💡 Cụm cực hay dùng cho Speaking Part 1 & 3 chủ đề Education"
+            }
+        ];
+
+        /* ==========================================================================
+           RESOURCES DATA (Danh sách tài liệu chính)
+           ========================================================================== */
+        const RESOURCES_DATA = [
+            {
+                id: "res-001",
+                title: "IELTS Speaking Part 2 — Cue Card Master Collection",
+                category: "Speaking",
+                skill: "Speaking",
+                level: "Intermediate",
+                type: "PDF",
+                duration: "45 mins",
+                description: "Tổng hợp 120 chủ đề Cue Card kèm dàn bài chi tiết và từ vựng ăn điểm.",
+                url: "YOUR_FILE_LINK_HERE",
+                featured: true
+            },
+            {
+                id: "res-002",
+                title: "IELTS Writing Task 1 — Line Graph & Bar Chart Formula",
+                category: "Writing",
+                skill: "Writing",
+                level: "IELTS 6.0",
+                type: "Document",
+                duration: "30 mins",
+                description: "Cấu trúc câu so sánh và mô tả xu hướng chuẩn Academic cho Task 1.",
+                url: "YOUR_FILE_LINK_HERE",
+                featured: true
+            },
+            {
+                id: "res-003",
+                title: "Topic vocabulary",
+                category: "Vocabulary",
+                skill: "Vocabulary",
+                level: "Intermediate",
+                type: "Notion",
+                duration: "Self-paced",
+                description: "TỪ VỰNG IELTS THEO CHỦ ĐỀ + CÁCH DÙNG + CÂU MINH HỌA",
+                url: "https://drive.google.com/drive/folders/1xErhp0GD3NLNMIyodbi4lzzUm8fSaxPP?usp=drive_link",
+                featured: true
+            },
+            {
+                id: "res-004",
+                title: "IELTS Listening Section 3 & 4 Strategies",
+                category: "Listening",
+                skill: "Listening",
+                level: "Upper-Intermediate",
+                type: "Audio",
+                duration: "60 mins",
+                description: "Phương pháp bẫy từ nối và theo dõi bài giảng dài trong Section 4.",
+                url: "YOUR_FILE_LINK_HERE",
+                featured: false
+            },
+            {
+                id: "res-005",
+                title: "Mistake in grammar",
+                category: "Grammar",
+                skill: "Grammar",
+                level: "Intermediate",
+                type: "Document",
+                duration: "self-paced",
+                description: "các looi ngữ pháp thường gặp ",
+                url: "https://drive.google.com/file/d/15VebSF0jYpzOfAhBx1uJUIRu1gAH12Dp/view?usp=drive_link",
+                featured: false
+            },
+            {
+                id: "res-006",
+                title: "Connected Speech & Native Intonation Guide",
+                category: "Pronunciation",
+                skill: "Pronunciation",
+                level: "Beginner",
+                type: "PDF",
+                duration: "20 mins",
+                description: "Quy tắc nối âm, nuốt âm và đánh trọng âm câu giúp nói tự nhiên.",
+                url: "YOUR_FILE_LINK_HERE",
+                featured: false
+            },
+            {
+                id: "res-007",
+                title: "Listening and Vocab Learning Through Video",
+                category: "Listening",
+                skill: "Listening",
+                level: "Intermediate",
+                type: "Video",
+                duration: "16 mins",
+                description: "Learn English with PODCASTS — Why Tom Holland DELETED His Instagram",
+                url: "https://youtu.be/P26AE7NLx4Q",
+                featured: true
+            },
+            {
+                id: "res-008",
+                title: "Từ vựng 6 chủ đề thông dụng",
+                category: "Vocabulary",
+                skill: "Vocabulary",
+                level: "IELTS 6.5+",
+                type: "Document",
+                duration: "Self-paced",
+                description: "Tổng hợp từ vựng ăn điểm kèm ví dụ minh họa theo 6 chủ đề IELTS phổ biến nhất.",
+                url: "https://drive.google.com/drive/folders/1l6B4zCOYbFquVOGiO_X12Q4Ffx2IFkYj?usp=drive_link",
+                featured: true
+            },
+            {
+                id: "res-009", 
+                title: "Sơ lược về Listening IELTS",
+                category: "Listening", 
+                skill: "Listening",
+                level: "Beginner", 
+                type: "Document", 
+                duration: "30 mins",
+                description: "Tổng quan cấu trúc bài thi và chiến thuật làm bài IELTS Listening căn bản.",
+                url: "https://drive.google.com/drive/folders/1Iuzbuo3HzYZlg8SIuWxbOFWLiW7hB3Ef?usp=drive_link", 
+                featured: false
+            },
+            {
+                id: "res-010", 
+                title: "Sơ lược về Reading IELTS",
+                category: "Reading", 
+                skill: "Reading",
+                level: "Beginner", 
+                type: "Document", 
+                duration: "30 mins",
+                description: "Tổng quan cấu trúc bài thi và chiến thuật làm bài IELTS Reading căn bản.",
+                url: "https://drive.google.com/drive/folders/1Cti1oGFPATJqSZJ-f32dSy7iBMVJFBra?usp=drive_link", 
+                featured: false
+            },
+            {
+                id: "res-011", 
+                title: "Sơ lược về Writing IELTS",
+                category: "Writing", 
+                skill: "Writing",
+                level: "Beginner", 
+                type: "Document", 
+                duration: "30 mins",
+                description: "Tổng quan cấu trúc bài thi và chiến thuật làm bài IELTS Writing căn bản.",
+                url: "https://drive.google.com/drive/folders/1RhToZDdt7YsbxjVg7TuKZrnRpg7p9AXX?usp=drive_link", 
+                featured: false
+            },
+            {
+                id: "res-012", 
+                title: "Sơ lược về Speaking IELTS",
+                category: "Speaking", 
+                skill: "Speaking",
+                level: "Beginner", 
+                type: "Document", 
+                duration: "30 mins",
+                description: "Tổng quan cấu trúc bài thi và chiến thuật làm bài IELTS Speaking căn bản.",
+                url: "https://drive.google.com/drive/folders/1su3leWYljtKm1wOgUTJvZBwNcNZooDwI?usp=drive_link", 
+                featured: false
+            },
+            {
+                id: "res-013", 
+                title: "Target Writing 6.5+",
+                category: "Writing", 
+                skill: "Writing",
+                level: "Intermediate", 
+                type: "Document", 
+                duration: "Self-paced",
+                description: "Tổng hợp toàn bộ các dạng bài và phương pháp làm IELTS Writing chi tiết.",
+                url: "https://drive.google.com/drive/folders/1N9F4UAmykEL0qZ_oqSFDqk6k6s22TVk0?usp=drive_link", 
+                featured: false
+            },
+            {
+                id: "res-014", 
+                title: "Trọn bộ từ vựng ielts",
+                category: "Vocabulary", 
+                skill: "Vocabulary",
+                level: "Beginner", 
+                type: "Document", 
+                duration: "Self-paced",
+                description: "Tổng hợp toàn bộ từ vựng IELTS theo chủ đề.",
+                url: "https://drive.google.com/drive/folders/1X5v5X5X5X5X5X5X5X5X5X5X5X5X5X5X?usp=drive_linkhttps://drive.google.com/drive/folders/1CJ3XZ0SMs4CgMOyGIXn8d_MghyIhUijr", 
+                featured: false
+            },
+            {
+                id: "res-015", 
+                title: "Từ vựng tiếng anh khủng ",
+                category: "Vocabulary", 
+                skill: "Vocabulary",
+                level: "Intermediate", 
+                type: "Document", 
+                duration: "Self-paced",
+                description: "Tổng hợp từ vựng ielts.",
+                url: "https://drive.google.com/drive/folders/1tQY-UkKfxEWNEQTP1ZKyKzz-DV1NllEc?usp=drive_link", 
+                featured: false
+            },
+            {
+                id: "res-016", 
+                title: "Trọn bộ ngữ pháp tiếng anh",
+                category: "Grammar", 
+                skill: "Grammar",
+                level: "Beginner", 
+                type: "Document", 
+                duration: "Self-paced",
+                description: "Tổng hợp ngữ pháp tiếng anh.",
+                url: "https://drive.google.com/drive/folders/1WURqeKHFe8HPXJPpth7OYuJX4-I6svCF?usp=drive_link", 
+                featured: false
+            },
+            {
+                id: "res-017", 
+                title: "Chủ điểm ngữ pháp quan trọng",
+                category: "Grammar", 
+                skill: "Grammar",
+                level: "Beginner", 
+                type: "Document", 
+                duration: "Self-paced",
+                description: "Tổng hợp ngữ pháp tiếng anh quan trọng.",
+                url: "https://drive.google.com/drive/folders/1Yb_8JGppCiZ5usTZ3qPud-2B1QzmSsGf?usp=drive_link", 
+                featured: false
+            }
+        ];
+
+        /* APP STATE */
+        let favorites = JSON.parse(localStorage.getItem('aura_favorites')) || [];
+        let recentlyViewed = JSON.parse(localStorage.getItem('aura_recent')) || [];
+        let currentDailyIndex = Math.floor(Math.random() * DAILY_KNOWLEDGE_BASE.length);
+
+        /* APP ROUTER / NAVIGATION */
+        function switchPage(pageId, filterSkill = 'all') {
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            const activeNav = document.getElementById(`nav-${pageId}`);
+            if(activeNav) activeNav.classList.add('active');
+
+            const main = document.getElementById('mainContent');
+
+            if (pageId === 'home') {
+                renderHome(main);
+            } else if (pageId === 'resources') {
+                renderResources(main, filterSkill);
+            } else if (pageId === 'dashboard') {
+                renderDashboard(main);
+            } else if (pageId === 'plan') {
+                renderPlan(main);
+            } else if (pageId === 'favorites') {
+                renderFavorites(main);
+            }
+            
+            lucide.createIcons();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        /* PAGE 1: HOME */
+        function renderHome(container) {
+            const daily = DAILY_KNOWLEDGE_BASE[currentDailyIndex];
+
+            container.innerHTML = `
+                <section class="hero">
+                    <div class="hero-grid">
+                        <div>
+                            <h1 class="hero-title">Elevate Your IELTS & English Mastery.</h1>
+                            <p class="hero-desc">Thư viện lưu trữ và hệ thống quản lý học tập cá nhân. Tổng hợp toàn bộ tài liệu, mẹo làm bài và công cụ ôn luyện chất lượng cao.</p>
+                            <div class="hero-actions">
+                                <button class="btn-primary" onclick="switchPage('resources')">
+                                    Khám Phá Tài Liệu <i data-lucide="arrow-right" size="18"></i>
+                                </button>
+                                <button class="btn-secondary" onclick="switchPage('plan')">
+                                    Xem Lộ Trình Học
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="daily-card" id="dailyCard">
+                            <button class="daily-refresh-btn" onclick="nextDailyKnowledge()" title="Đổi kiến thức khác">
+                                <i data-lucide="refresh-cw" size="18"></i>
+                            </button>
+                            <span class="daily-tag">${daily.tag}</span>
+                            <h3 style="font-size: 1.4rem; margin-bottom: 0.3rem;">"${daily.title}"</h3>
+                            <p style="color: rgba(255,255,255,0.85); font-size: 0.9rem; margin-bottom: 0.8rem; font-weight: 500;">
+                                ${daily.meaning}
+                            </p>
+                            <p style="font-size: 0.85rem; background: rgba(255,255,255,0.1); padding: 0.75rem; border-radius: 8px; margin-bottom: 0.6rem;">
+                                ${daily.example}
+                            </p>
+                            <p style="font-size: 0.78rem; color: #6EE7B7; font-weight: 600;">
+                                ${daily.extra}
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section style="margin-top: 3rem;">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Truy Cập Nhanh Theo Kỹ Năng</h2>
+                    <div class="quick-grid">
+                        ${renderQuickCard('Listening', 'headphones', 'IELTS Listening', '3 Tài liệu')}
+                        ${renderQuickCard('Reading', 'book-open', 'IELTS Reading', '2 Tài liệu')}
+                        ${renderQuickCard('Writing', 'pen-tool', 'IELTS Writing', '3 Tài liệu')}
+                        ${renderQuickCard('Speaking', 'mic', 'IELTS Speaking', '2 Tài liệu')}
+                        ${renderQuickCard('Grammar', 'layers', 'Grammar Foundation', '1 Tài liệu')}
+                        ${renderQuickCard('Vocabulary', 'brain', 'Academic Vocab', '2 Tài liệu')}
+                    </div>
+                </section>
+            `;
+        }
+
+        function nextDailyKnowledge() {
+            currentDailyIndex = (currentDailyIndex + 1) % DAILY_KNOWLEDGE_BASE.length;
+            renderHome(document.getElementById('mainContent'));
+            lucide.createIcons();
+        }
+
+        function renderQuickCard(skill, icon, title, count) {
+            return `
+                <div class="quick-card" onclick="switchPage('resources', '${skill}')">
+                    <div class="quick-icon"><i data-lucide="${icon}"></i></div>
+                    <h4 style="font-size: 1.1rem;">${title}</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">${count}</p>
+                </div>
+            `;
+        }
+
+        /* PAGE 2: RESOURCE LIBRARY */
+        function renderResources(container, defaultSkill = 'all') {
+            container.innerHTML = `
+                <div style="padding: 2rem 0;">
+                    <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Thư Viện Tài Liệu Học Tập</h1>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Lọc và truy cập tài liệu được phân loại theo cấu trúc học tập.</p>
+
+                    <div class="filter-bar">
+                        <select class="select-filter" id="skillFilter" onchange="filterResources()">
+                            <option value="all">Tất cả Kỹ Năng</option>
+                            <option value="Speaking" ${defaultSkill==='Speaking'?'selected':''}>Speaking</option>
+                            <option value="Writing" ${defaultSkill==='Writing'?'selected':''}>Writing</option>
+                            <option value="Listening" ${defaultSkill==='Listening'?'selected':''}>Listening</option>
+                            <option value="Reading" ${defaultSkill==='Reading'?'selected':''}>Reading</option>
+                            <option value="Grammar" ${defaultSkill==='Grammar'?'selected':''}>Grammar</option>
+                            <option value="Vocabulary" ${defaultSkill==='Vocabulary'?'selected':''}>Vocabulary</option>
+                        </select>
+
+                        <select class="select-filter" id="typeFilter" onchange="filterResources()">
+                            <option value="all">Tất cả Định Dạng</option>
+                            <option value="PDF">PDF</option>
+                            <option value="Document">Document / Docx</option>
+                            <option value="Notion">Notion Page</option>
+                            <option value="Video">Video</option>
+                        </select>
+                    </div>
+
+                    <div class="resources-grid" id="resourcesContainer"></div>
+                </div>
+            `;
+            filterResources();
+        }
+
+        function filterResources() {
+            const skill = document.getElementById('skillFilter')?.value || 'all';
+            const type = document.getElementById('typeFilter')?.value || 'all';
+            const grid = document.getElementById('resourcesContainer');
+
+            const filtered = RESOURCES_DATA.filter(item => {
+                const matchSkill = skill === 'all' || item.skill === skill;
+                const matchType = type === 'all' || item.type === type;
+                return matchSkill && matchType;
+            });
+
+            grid.innerHTML = filtered.map(item => renderResourceCard(item)).join('');
+            lucide.createIcons();
+        }
+
+        function renderResourceCard(item) {
+            const isFav = favorites.includes(item.id);
+            return `
+                <div class="resource-card">
+                    <i data-lucide="star" class="fav-star ${isFav ? 'active' : ''}" onclick="toggleFav('${item.id}')"></i>
+                    <div>
+                        <div class="card-pills">
+                            <span class="badge-pill badge-skill">${item.skill}</span>
+                            <span class="badge-pill">${item.level}</span>
+                            <span class="badge-pill">${item.type}</span>
+                        </div>
+                        <h3 class="card-title">${item.title}</h3>
+                        <p class="card-desc">${item.description}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span style="color: var(--text-muted);"><i data-lucide="clock" size="12"></i> ${item.duration}</span>
+                        <a href="${item.url}" target="_blank" class="btn-open" onclick="trackRecent('${item.id}')">
+                            MỞ TÀI LIỆU <i data-lucide="external-link" size="14"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        /* PAGE 3: DASHBOARD */
+        function renderDashboard(container) {
+            container.innerHTML = `
+                <div style="padding: 2rem 0;">
+                    <h1 style="font-size: 2rem; margin-bottom: 1.5rem;">My Learning Dashboard</h1>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                        <div style="background:white; padding:1.5rem; border-radius:12px; border:1px solid var(--border);">
+                            <p style="font-size:0.85rem; color:var(--text-muted);">Tài Liệu Đã Lưu</p>
+                            <h2 style="font-size:2rem; color:var(--primary);">${favorites.length}</h2>
+                        </div>
+                        <div style="background:white; padding:1.5rem; border-radius:12px; border:1px solid var(--border);">
+                            <p style="font-size:0.85rem; color:var(--text-muted);">Mục Tiêu</p>
+                            <h2 style="font-size:2rem; color:var(--secondary);">IELTS 7.5+</h2>
+                        </div>
+                    </div>
+
+                    <h2 style="font-size: 1.25rem; margin-bottom: 1rem;">Tài Liệu Vừa Mở Gần Đây</h2>
+                    <div class="resources-grid">
+                        ${recentlyViewed.length ? 
+                            RESOURCES_DATA.filter(r => recentlyViewed.includes(r.id)).map(r => renderResourceCard(r)).join('') 
+                            : '<p style="color:var(--text-muted);">Chưa có dữ liệu truy cập.</p>'}
+                    </div>
+                </div>
+            `;
+        }
+
+        /* PAGE 4: STUDY PLAN ROADMAP */
+        function renderPlan(container) {
+            container.innerHTML = `
+                <div style="padding: 2rem 0;">
+                    <h1 style="font-size: 2rem; text-align: center; margin-bottom: 0.5rem;">IELTS Mastery Roadmap</h1>
+                    <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem;">Lộ trình ôn luyện từ nền tảng đến chiến thuật làm bài.</p>
+
+                    <div class="roadmap-container">
+                        <div class="roadmap-step">
+                            <div>
+                                <span style="font-size:0.75rem; font-weight:700; color:var(--primary);">STAGE 1</span>
+                                <h3>English Foundation (Nền Tảng)</h3>
+                                <p style="font-size:0.875rem; color:var(--text-muted);">Củng cố 12 thì tiếng Anh, từ vựng thông dụng và bảng phiên âm IPA.</p>
+                            </div>
+                            <i data-lucide="check-circle-2" color="var(--secondary)"></i>
+                        </div>
+
+                        <div class="roadmap-step">
+                            <div>
+                                <span style="font-size:0.75rem; font-weight:700; color:var(--primary);">STAGE 2</span>
+                                <h3>Skill Strategies (Chiến Thuật Kỹ Năng)</h3>
+                                <p style="font-size:0.875rem; color:var(--text-muted);">Nắm rõ phương pháp làm bài cho từng dạng câu hỏi IELTS.</p>
+                            </div>
+                            <i data-lucide="circle" color="var(--border)"></i>
+                        </div>
+
+                        <div class="roadmap-step">
+                            <div>
+                                <span style="font-size:0.75rem; font-weight:700; color:var(--primary);">STAGE 3</span>
+                                <h3>Intensive Practice & Mock Tests</h3>
+                                <p style="font-size:0.875rem; color:var(--text-muted);">Luyện đề dưới áp lực thời gian thật và chấm chữa bài chi tiết.</p>
+                            </div>
+                            <i data-lucide="circle" color="var(--border)"></i>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /* PAGE 5: FAVORITES */
+        function renderFavorites(container) {
+            const favItems = RESOURCES_DATA.filter(r => favorites.includes(r.id));
+            container.innerHTML = `
+                <div style="padding: 2rem 0;">
+                    <h1 style="font-size: 2rem; margin-bottom: 1.5rem;">Tài Liệu Đã Bookmark</h1>
+                    <div class="resources-grid">
+                        ${favItems.length ? favItems.map(r => renderResourceCard(r)).join('') : '<p style="color:var(--text-muted);">Bạn chưa lưu tài liệu nào.</p>'}
+                    </div>
+                </div>
+            `;
+        }
+
+        /* INTERACTION HELPERS */
+        function toggleFav(id) {
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(item => item !== id);
+            } else {
+                favorites.push(id);
+            }
+            localStorage.setItem('aura_favorites', JSON.stringify(favorites));
+            
+            const currentActive = document.querySelector('.nav-btn.active')?.id.replace('nav-', '') || 'home';
+            switchPage(currentActive);
+        }
+
+        function trackRecent(id) {
+            if (!recentlyViewed.includes(id)) {
+                recentlyViewed.unshift(id);
+                if (recentlyViewed.length > 6) recentlyViewed.pop();
+                localStorage.setItem('aura_recent', JSON.stringify(recentlyViewed));
+            }
+        }
+
+        /* INITIAL APP INIT */
+        window.onload = () => {
+            switchPage('home');
+        };
+    </script>
+</body>
+</html>
