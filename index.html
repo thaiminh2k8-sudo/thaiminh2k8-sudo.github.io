@@ -1012,6 +1012,10 @@
             } else if (pageId === 'favorites') {
                 renderFavorites(main);
             }
+            // Tìm hàm switchPage trong script và thêm điều kiện này vào:
+} else if (pageId === 'quiz') {
+    startAdvancedQuizScreen(main);
+}
             
             lucide.createIcons();
             window.scrollTo({top: 0, behavior: 'smooth'});
@@ -1262,6 +1266,157 @@
         window.onload = () => {
             switchPage('home');
         };
+        /* ==========================================================================
+   ADVANCED VOCAB QUIZ (FETCH DATA FROM JSON FILE)
+   ========================================================================== */
+let globalVocabData = [];
+let quizState = {
+    questions: [],
+    currentIndex: 0,
+    score: 0,
+    answered: false
+};
+
+// Hàm tải file vocab.json từ server/GitHub
+async function loadVocabJSON() {
+    try {
+        const response = await fetch('vocab.json');
+        if (!response.ok) throw new Error('Không thể tải file vocab.json');
+        globalVocabData = await response.json();
+    } catch (error) {
+        console.error("Lỗi đọc dữ liệu từ vựng:", error);
+    }
+}
+
+// Gọi hàm tải dữ liệu khi trang web vừa mở
+window.addEventListener('DOMContentLoaded', loadVocabJSON);
+
+function startAdvancedQuizScreen(container) {
+    // Lấy danh sách các tài liệu duy nhất có từ vựng trong file JSON
+    const availableSources = [...new Set(globalVocabData.map(item => item.sourceTitle))];
+
+    container.innerHTML = `
+        <div class="quiz-container" style="text-align: center;">
+            <h1 style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;">🎮 Vocab Challenge Mode</h1>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Chọn bộ từ vựng theo file tài liệu để bắt đầu kiểm tra.</p>
+
+            <div style="max-width: 400px; margin: 0 auto 2rem;">
+                <label style="display: block; text-align: left; font-weight: 700; margin-bottom: 0.5rem;">Chọn nguồn tài liệu:</label>
+                <select id="quizSourceSelect" class="select-filter" style="width: 100%; padding: 0.8rem;">
+                    <option value="ALL">Tất cả tài liệu (Ngẫu nhiên)</option>
+                    ${availableSources.map(src => `<option value="${src}">${src}</option>`).join('')}
+                </select>
+            </div>
+
+            <button class="btn-primary" style="margin: 0 auto;" onclick="initQuizSession()">
+                <i data-lucide="play"></i> Bắt Đầu Làm Bài
+            </button>
+        </div>
+    `;
+    lucide.createIcons();
+}
+
+function initQuizSession() {
+    const selectedSource = document.getElementById('quizSourceSelect')?.value || 'ALL';
+    
+    // Lọc từ vựng theo file được chọn
+    let filteredVocab = selectedSource === 'ALL' 
+        ? globalVocabData 
+        : globalVocabData.filter(item => item.sourceTitle === selectedSource);
+
+    if (filteredVocab.length < 3) {
+        alert("Bộ từ vựng của file này chưa đủ số lượng câu hỏi. Vui lòng chọn file khác hoặc bổ sung thêm vào vocab.json!");
+        return;
+    }
+
+    // Trộn ngẫu nhiên danh sách câu hỏi
+    const shuffled = [...filteredVocab].sort(() => 0.5 - Math.random());
+    
+    quizState.questions = shuffled.slice(0, 5).map(item => {
+        // Lấy 3 lựa chọn sai ngẫu nhiên
+        const wrongOptions = globalVocabData
+            .filter(d => d.word !== item.word)
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 3)
+            .map(d => d.meaning);
+
+        const allOptions = [...wrongOptions, item.meaning].sort(() => 0.5 - Math.random());
+
+        return {
+            word: item.word,
+            pos: item.pos,
+            correct: item.meaning,
+            options: allOptions,
+            example: item.example,
+            source: item.sourceTitle
+        };
+    });
+
+    quizState.currentIndex = 0;
+    quizState.score = 0;
+    quizState.answered = false;
+
+    renderQuizQuestion(document.getElementById('mainContent'));
+}
+
+function renderQuizQuestion(container) {
+    const q = quizState.questions[quizState.currentIndex];
+
+    // Màn hình kết thúc lượt Quiz
+    if (!q) {
+        container.innerHTML = `
+            <div class="quiz-container" style="text-align: center;">
+                <h1 style="font-size: 2.2rem; color: var(--primary); margin-bottom: 0.5rem;">🎉 Hoàn Thành Lượt Kiểm Tra!</h1>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Kết quả luyện tập dựa trên file tài liệu đã chọn.</p>
+                
+                <div style="font-size: 3.5rem; font-weight: 800; color: var(--secondary); margin-bottom: 1rem;">
+                    ${quizState.score} / ${quizState.questions.length}
+                </div>
+                
+                <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 2rem;">
+                    ${quizState.score === 5 ? "🏆 Band 8.5+ Vocab Master!" : quizState.score >= 3 ? "👍 Tốt! Hãy duy trì phong độ!" : "💪 Hãy ôn tập lại file tài liệu này nhé!"}
+                </p>
+
+                <button class="btn-primary" style="margin: 0 auto;" onclick="startAdvancedQuizScreen(document.getElementById('mainContent'))">
+                    <i data-lucide="rotate-ccw"></i> Chọn Bộ Từ Vựng Khác
+                </button>
+            </div>
+        `;
+        lucide.createIcons();
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-light); text-transform: uppercase;">
+                    📂 Nguồn: ${q.source}
+                </span>
+                <span class="quiz-score-badge">Score: ${quizState.score}</span>
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+                <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Câu ${quizState.currentIndex + 1}/${quizState.questions.length}: Chọn nghĩa đúng của từ</span>
+                <h2 class="quiz-question-title">"${q.word}" <small style="font-size: 1rem; color: var(--text-muted);">(${q.pos})</small></h2>
+            </div>
+
+            <div class="quiz-options" id="quizOptions">
+                ${q.options.map(opt => `
+                    <button class="quiz-option-btn" onclick="checkQuizAnswer(this, '${opt.replace(/'/g, "\\'")}', '${q.correct.replace(/'/g, "\\'")}')">
+                        ${opt}
+                    </button>
+                `).join('')}
+            </div>
+
+            <div id="quizFeedback" style="min-height: 50px;"></div>
+
+            <button id="quizNextBtn" class="btn-primary quiz-next-btn" style="display: none;" onclick="nextQuizQuestion()">
+                Câu Tiếp Theo <i data-lucide="arrow-right"></i>
+            </button>
+        </div>
+    `;
+    lucide.createIcons();
+}
     </script>
 </body>
 </html>
