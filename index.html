@@ -871,6 +871,7 @@
         const WritingCount = RESOURCES_DATA.filter(res => res.skill === 'Writing').length;
         const SpeakingCount = RESOURCES_DATA.filter(res => res.skill === 'Speaking').length;
         const GrammarCount = RESOURCES_DATA.filter(res => res.skill === 'Grammar').length;
+        const VocabularyCount = RESOURCES_DATA.filter(res => res.skill === 'Vocabulary').length;
 
         /* APP STATE */
         let favorites = JSON.parse(localStorage.getItem('aura_favorites')) || [];
