@@ -652,14 +652,14 @@
         const RESOURCES_DATA = [
             {
                 id: "res-001",
-                title: "IELTS Speaking Part 2 — Cue Card Master Collection",
-                category: "Speaking",
-                skill: "Speaking",
+                title: "Phát âm nâng cao",
+                category: "Pronunciation",
+                skill: "Pronunciation",
                 level: "Intermediate",
                 type: "PDF",
-                duration: "45 mins",
-                description: "Tổng hợp 120 chủ đề Cue Card kèm dàn bài chi tiết và từ vựng ăn điểm.",
-                url: "YOUR_FILE_LINK_HERE",
+                duration: "Self-paced",
+                description: "Prep chuyên sâu các âm, trọng âm, nối âm, nuốt âm và ngữ điệu giúp nói tự nhiên.",
+                url: "https://drive.google.com/drive/folders/1OPFbKpBTCmZ_e7DEP-Q3djbzUwM0oW6R?usp=drive_link",
                 featured: true
             },
             {
@@ -682,20 +682,20 @@
                 level: "Intermediate",
                 type: "Notion",
                 duration: "Self-paced",
-                description: "TỪ VỰNG IELTS THEO CHỦ ĐỀ + CÁCH DÙNG + CÂU MINH HỌA",
+                description: "TỪ VỰNG IELTS THEO CHỦ ĐỀ + CÁCH DÙNG + CÂU MINH HỌAPP",
                 url: "https://drive.google.com/drive/folders/1xErhp0GD3NLNMIyodbi4lzzUm8fSaxPP?usp=drive_link",
                 featured: true
             },
             {
                 id: "res-004",
-                title: "IELTS Listening Section 3 & 4 Strategies",
+                title: "IELTS Listening Provip",
                 category: "Listening",
                 skill: "Listening",
                 level: "Upper-Intermediate",
                 type: "Audio",
                 duration: "60 mins",
-                description: "Phương pháp bẫy từ nối và theo dõi bài giảng dài trong Section 4.",
-                url: "YOUR_FILE_LINK_HERE",
+                description: "Prep chuyên sâu",
+                url: "https://drive.google.com/drive/folders/1rjdZ2_75BULOXXT7eNYITtJOaCaaY5Ex?usp=drive_link",
                 featured: false
             },
             {
@@ -706,20 +706,20 @@
                 level: "Intermediate",
                 type: "Document",
                 duration: "self-paced",
-                description: "các looi ngữ pháp thường gặp ",
+                description: "các lỗi ngữ pháp thường gặp ",
                 url: "https://drive.google.com/file/d/15VebSF0jYpzOfAhBx1uJUIRu1gAH12Dp/view?usp=drive_link",
                 featured: false
             },
             {
                 id: "res-006",
-                title: "Connected Speech & Native Intonation Guide",
-                category: "Pronunciation",
-                skill: "Pronunciation",
-                level: "Beginner",
+                title: "Speaking Ietls Prep",
+                category: "Speaking",
+                skill: "Speaking",
+                level: "Intermediate",
                 type: "PDF",
-                duration: "20 mins",
-                description: "Quy tắc nối âm, nuốt âm và đánh trọng âm câu giúp nói tự nhiên.",
-                url: "YOUR_FILE_LINK_HERE",
+                duration: "Self-paced",
+                description: "Prep chuyên sâu Speaking IELTS các chủ đề thường gặp",
+                url: "https://drive.google.com/drive/folders/1Q-7IwynW3C4eugXg0ikPBWqqXjmMoElk?usp=drive_link",
                 featured: false
             },
             {
@@ -853,8 +853,26 @@
                 description: "Tổng hợp ngữ pháp tiếng anh quan trọng.",
                 url: "https://drive.google.com/drive/folders/1Yb_8JGppCiZ5usTZ3qPud-2B1QzmSsGf?usp=drive_link", 
                 featured: false
+            },
+            {
+                id: "res-018", 
+                title: "Siêu từ vựng 30 chủ đề",
+                category: "Vocabulary", 
+                skill: "Vocabulary",
+                level: "Advanced", 
+                type: "Document", 
+                duration: "Self-paced",
+                description: "Tổng hợp từ vựng từ Prep "nền tảng"",
+                url: "https://drive.google.com/drive/folders/14BDVPzSiQvSQwr65mymwdDVhdd9qBHBL?usp=drive_link", 
+                featured: false
             }
         ];
+        const ListeningCount = RESOURCES_DATA.filter(res => res.skill === 'Listening').length;
+        const ReadingCount = RESOURCES_DATA.filter(res => res.skill === 'Reading').length;
+        const WritingCount = RESOURCES_DATA.filter(res => res.skill === 'Writing').length;
+        const SpeakingCount = RESOURCES_DATA.filter(res => res.skill === 'Speaking').length;
+        const GrammarCount = RESOURCES_DATA.filter(res => res.skill === 'Grammar').length;
+            
 
         /* APP STATE */
         let favorites = JSON.parse(localStorage.getItem('aura_favorites')) || [];
