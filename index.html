@@ -17,6 +17,101 @@
 
     <style>
         /* ==========================================================================
+   GAME SPLASH SCREEN STYLES
+   ========================================================================== */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, #1E1B4B 0%, #0F172A 100%);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-content {
+    animation: zoomIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.game-badge {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    background: rgba(99, 102, 241, 0.2);
+    border: 1px solid #6366F1;
+    color: #818CF8;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+}
+
+.game-title {
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    color: #FFFFFF;
+    text-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
+    margin-bottom: 0.5rem;
+}
+
+.game-subtitle {
+    color: #94A3B8;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+}
+
+.btn-game-start {
+    background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+    color: white;
+    font-weight: 800;
+    font-size: 1.2rem;
+    padding: 1.2rem 3rem;
+    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.5);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    animation: pulse 2s infinite;
+}
+
+.btn-game-start:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 35px rgba(124, 58, 237, 0.8);
+}
+
+.game-footer-text {
+    margin-top: 2rem;
+    color: #64748B;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+        /* ==========================================================================
            DESIGN SYSTEM & VARIABLES
            ========================================================================== */
         :root {
@@ -458,6 +553,20 @@
     </style>
 </head>
 <body>
+    <!-- GAME SPLASH SCREEN -->
+<div id="gameSplash" class="splash-screen">
+    <div class="splash-content">
+        <div class="game-badge">LEVEL 1: FOUNDATION</div>
+        <h1 class="game-title">AURA IELTS</h1>
+        <p class="game-subtitle">Ready to level up your English band score?</p>
+        
+        <button class="btn-game-start" onclick="startGame()">
+            <i data-lucide="play" fill="currentColor"></i> BẮT ĐẦU HỌC
+        </button>
+        
+        <div class="game-footer-text">Press Start to Enter Learning Realm</div>
+    </div>
+</div>
 
     <!-- HEADER -->
     <header class="header">
@@ -497,6 +606,12 @@
 
     <!-- JAVASCRIPT SYSTEM -->
     <script>
+        function startGame() {
+    const splash = document.getElementById('gameSplash');
+    if (splash) {
+        splash.classList.add('hidden');
+    }
+}
         /* ==========================================================================
            DAILY KNOWLEDGE BASE (Danh sách Từ vựng & Collocations hàng ngày)
            ========================================================================== */
